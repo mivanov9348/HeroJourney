@@ -24,11 +24,10 @@
             var enemyType = enemyTypes[rnd.Next(0, enemyTypes.Count())];
 
             var enemyLevel = hero.Level;
-            var enemyName = enemyClass.Name + " " + enemyType.Name;
 
-            var enemyAttack = enemyType.Attack + (enemyLevel * enemyClass.BonusAttack);
-            var enemyDefense = enemyType.Defense + (enemyLevel * enemyClass.BonusDefense);
-            var enemyHealth = enemyType.Health + (enemyLevel * enemyClass.BonusHealth);
+            var enemyAttack = (enemyType.Attack + enemyClass.BonusAttack) * enemyLevel;
+            var enemyDefense = (enemyType.Defense + enemyClass.BonusDefense) * enemyLevel;
+            var enemyHealth = (enemyType.Health + enemyClass.BonusHealth) * enemyLevel;
 
             var enemy = new EnemyRecords
             {
@@ -47,8 +46,6 @@
 
             return enemy;
         }
-
-
         public ArenaViewModel Details(int enemyId)
         {
             var currEnemy = this.data.EnemyRecords.FirstOrDefault(x => x.Id == enemyId);
@@ -64,5 +61,8 @@
         }
 
         public EnemyRecords GetArenaEnemy(int currEnemy) => this.data.EnemyRecords.FirstOrDefault(x => x.Id == currEnemy);
+
+
+
     }
 }
