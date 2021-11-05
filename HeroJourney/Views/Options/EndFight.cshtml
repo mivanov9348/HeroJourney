@@ -1,0 +1,55 @@
+﻿@model ArenaViewModel
+
+<link href="~/css/DeadPage.css" rel="stylesheet" />
+
+@if (Model.EnemyHealth == 0)
+{
+    <div class="row" style="display:block">
+        <div class="blog-card spring-fever">
+            <div class="title-content">
+
+            </div>
+            <img src="~/Images/arenaviking.png" />
+
+            <div class="card-info">
+                <input type="hidden" asp-for="@Model.Turn" value="@Model.Turn" />
+                <input type="hidden" asp-for="@Model.EnemyId" value="@Model.EnemyId" />
+            </div>
+
+            <div class="utility-info">
+                <ul class="utility-list">
+                    <li class="comments">Health: @Model.HeroHealth</li>
+                    <li class="comments">------------------------</li>
+                    <li class="comments">Attack: @Model.HeroAttack</li>
+                    <li class="comments">Defense: @Model.HeroDefense</li>
+                </ul>
+            </div>
+
+            <div class="gradient-overlay"></div>
+            <div class="color-overlay"></div>
+        </div>
+        <div class="winresult">
+
+            <h1>@Model.HeroName Wins</h1>
+            <h3>+ @Model.HeroXpWin XP</h3>
+            <h3>+ @Model.HeroCoinsWin Coin</h3>
+
+            <p>
+                XP: @Model.HeroXP
+                Coins: @Model.HeroCoins
+            </p>
+
+        </div>
+    </div>
+
+}
+@if (Model.HeroHealth == 0)
+{
+    <h1 style="margin-left:500px;color:red;margin-top:150px">DEAD!</h1>
+    <h1 style="margin-left:370px;color:ghostwhite">Killed by: @Model.EnemyName</h1>
+
+}
+
+<form method="get">
+    <input type="submit" asp-action="MainMenu" asp-controller="Home" value="To Main Menu" />
+</form>

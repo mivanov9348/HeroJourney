@@ -1,0 +1,117 @@
+﻿@model ArenaViewModel
+
+<link href="~/css/Arena.css" rel="stylesheet" />
+
+@if (Model.Turn == 2)
+{
+    <div class="row">
+
+        <form id="myform" asp-action="EnemyAttack"  method="get">
+            <div class="blog-card spring-fever" style="margin-top: -550px; background-color: lightskyblue;">
+                <p style="color: white; font-weight: bold; margin-top: 0px; background-color: darkslategrey; ">@Model.EnemyName</p>
+                <div class="title-content">
+
+                </div>
+                <img style="margin-top:10px;margin-left:-120px" src="~/Images/enemyArena.png" />
+
+                <div class="utility-info">
+                    <ul class="utility-list">
+                        <li class="comments">Health: @Model.EnemyHealth <span class="color:red">-@Model.EnemyDamage</span></li>
+                        <li class="comments">------------------------</li>
+                        <li class="comments">Attack: @Model.EnemyAttack</li>
+                        <li class="comments">Defense: @Model.EnemyDefense</li>
+                    </ul>
+                </div>
+                <input type="hidden" asp-for="@Model.Turn" value="@Model.Turn" />
+                <input type="hidden" asp-for="@Model.EnemyId" value="@Model.EnemyId" />
+                <div class="gradient-overlay"></div>
+                <div class="color-overlay"></div>
+            </div>
+        </form>
+
+        <div class="blog-card spring-fever">
+            <div class="title-content">
+
+            </div>
+            <img src="~/Images/arenaviking.png" />
+
+            <div class="card-info">
+               
+                <input asp-action="HeroAttack" class="attackBtn" type="submit" value="Attack" disabled="disabled" />
+            </div>
+
+            <div class="utility-info">
+                <ul class="utility-list">
+                    <li class="comments">Health: @Model.HeroHealth</li>
+                    <li class="comments">------------------------</li>
+                    <li class="comments">Attack: @Model.HeroAttack</li>
+                    <li class="comments">Defense: @Model.HeroDefense</li>
+                </ul>
+            </div>
+
+            <div class="gradient-overlay"></div>
+            <div class="color-overlay"></div>
+        </div>
+    </div>
+}
+
+@if (Model.Turn == 1)
+{
+
+    <div class="row">
+        <div class="blog-card spring-fever" style="margin-top: -550px; background-color: lightskyblue;">
+            <p style="color: white; font-weight: bold; margin-top: 0px; background-color: darkslategrey;font-size:25px">@Model.EnemyName</p>
+            <div class="title-content">
+
+            </div>
+            <img style="margin-top:10px;margin-left:-120px" src="~/Images/enemyArena.png" />
+
+            <div class="utility-info">
+                <ul class="utility-list">
+                    <li class="comments">Health: @Model.EnemyHealth </li>
+                    <li class="comments">------------------------</li>
+                    <li class="comments">Attack: @Model.EnemyAttack</li>
+                    <li class="comments">Defense: @Model.EnemyDefense</li>
+                </ul>
+            </div>
+
+            <div class="gradient-overlay"></div>
+            <div class="color-overlay"></div>
+        </div>
+
+        <form method="get">
+            <div class="blog-card spring-fever">
+                <div class="title-content">
+
+                </div>
+                <img src="~/Images/arenaviking.png" />
+
+                <div class="card-info">
+                    <input type="hidden" asp-for="@Model.Turn" value="@Model.Turn" />
+                    <input type="hidden" asp-for="@Model.EnemyId" value="@Model.EnemyId" />
+                    <input asp-action="HeroAttack" class="attackBtn" type="submit" value="Attack" />
+                </div>
+
+                <div class="utility-info">
+                    <ul class="utility-list">
+                        <li class="comments">Health: @Model.HeroHealth <span>-@Model.HeroDamage</span></li>
+                        <li class="comments">------------------------</li>
+                        <li class="comments">Attack: @Model.HeroAttack</li>
+                        <li class="comments">Defense: @Model.HeroDefense</li>
+                    </ul>
+                </div>
+
+                <div class="gradient-overlay"></div>
+                <div class="color-overlay"></div>
+            </div>
+        </form>
+    </div>
+}
+@if (Model.Turn == 3)
+{
+    <partial name="EndFight" />
+}
+
+<script>
+    setTimeout(function () { document.forms["myform"].submit(); }, 3000);
+</script>

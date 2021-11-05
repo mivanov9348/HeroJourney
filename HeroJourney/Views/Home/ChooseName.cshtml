@@ -1,0 +1,11 @@
+﻿@model NewPlayerViewModel
+
+<form method="get">
+    <h1 style="text-align:center;margin-top:100px;font-family:Elecstrom">Pick your Name</h1>
+    <div style="text-align:center;margin-top:50px;font-family:Elecstrom">
+        <h1>Class: @Model.ClassName</h1>
+        <input type="hidden" asp-for="@Model.Class" /><br />
+        <input style="border: 5px solid red" type="text" asp-for="Name" /><br />
+        <input style="font-size:25px" asp-action="MainMenu" type="submit" value="Save" />
+    </div>
+</form>

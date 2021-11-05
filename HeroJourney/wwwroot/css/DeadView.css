@@ -1,0 +1,59 @@
+﻿body {
+    background-image: url("../Images/deadview.jpg");
+    background-size: contain;
+    
+}
+
+.buttonRevive {
+    margin-top: 200px;
+    margin-left: 100px;
+    text-align: center;
+}
+
+    .buttonRevive input {
+        background-color: red;
+        font-size: 30px;
+        border-radius: 10px 10px 10px 10px;
+        border: 2px solid white;
+        text-align: center;
+        color: white;
+    }
+
+    .buttonRevive p {
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
+
+.buttonDelete {
+    margin-top: 200px;
+    margin-left: 100px;
+    text-align:center;
+}
+
+    .buttonDelete input {
+        background-color: red;
+        font-size: 30px;
+        border-radius: 10px 10px 10px 10px;
+        text-align: center;
+        color: white;
+        border: 2px solid white;
+    }
+
+    .buttonDelete p {
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
+
+.row {
+    display: flex;
+}
+
+.table-dark{
+    background-color:black;
+   margin-top:10px;
+    text-align:center;
+    width:20%;
+    margin-left:350px;
+}

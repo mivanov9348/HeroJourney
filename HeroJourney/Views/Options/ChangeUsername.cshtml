@@ -1,0 +1,15 @@
+﻿@model HeroListingModel
+
+    <link href="~/css/PlayerStats.css" rel="stylesheet" />
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <a asp-action="MainMenu" asp-controller="Home" style="font-size:40px;color:darkgoldenrod">To Main Menu</a>
+    <form method="get">
+        <div class="changeusername">
+            <p>Name:@Model.Name </p>
+            <input style="background-color:white;" type="text" name="name" asp-for="@Model.Name" value="New name.." />
+            <br />
+            <input type="submit"  value="Save" />
+
+        </div>
+    </form>

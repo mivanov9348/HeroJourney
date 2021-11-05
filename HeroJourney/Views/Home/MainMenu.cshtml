@@ -1,0 +1,121 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model NewPlayerViewModel
+<link href="~/css/MainMenu.css" rel="stylesheet" />
+
+@{
+    var imgText = "";
+
+}
+
+@switch (@Model.ClassName)
+{
+    case "Paladin": imgText = "paladin.jpg"; break;
+    case "Druid": imgText = "druid.jpg"; break;
+    case "Wizard": imgText = "wizard.jpg"; break;
+    case "Viking": imgText = "viking.jpg"; break;
+    default:
+        break;
+}
+
+<ul class="cards">
+
+    <li>
+        <a asp-controller="Options" asp-action="PlayerStats" class="card" style="height:300px">
+            <img src="~/Images/playerstats.jpg" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <img class="card__thumb" src="/Images/logo.png" alt="" />
+                    <div class="card__header-text">
+                        <h3 class="card__title" style="font-size:20px">PLAYER STATS</h3>
+                    </div>
+                </div>
+                <p class="card__description"></p>
+            </div>
+        </a>
+    </li>
+
+
+    <li>
+        <a asp-controller="Options" asp-action="Arena" class="card" style="height:300px;">
+            <img src="~/Images/arena.jpg" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <img class="card__thumb" src="/Images/logo.png" alt="" />
+                    <div class="card__header-text">
+                        <h1 class="card__title" style="font-size:20px">ARENA</h1>
+                    </div>
+                </div>
+                <p class="card__description"></p>
+            </div>
+        </a>
+    </li>
+
+    <li>
+        <a asp-controller="Options" asp-action="HeroStatistic" class="card" style="height:300px;">
+            <img src="~/Images/@imgText" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <img class="card__thumb" src="/Images/logo.png" alt="" />
+                    <div class="card__header-text">
+                        <h3 class="card__title" style="font-size:20px">HERO STATISTICS</h3>
+                    </div>
+                </div>
+                <p class="card__description"></p>
+            </div>
+        </a>
+    </li>
+
+
+    <li>
+        <a asp-controller="Options" asp-action="StoryTale" class="card" style="height:300px">
+            <img src="~/Images/book.jpg" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <img class="card__thumb" src="/Images/logo.png" alt="" />
+                    <div class="card__header-text">
+                        <h3 class="card__title" style="font-size:20px">STORY TALE</h3>
+                    </div>
+                </div>
+                <p class="card__description"></p>
+            </div>
+        </a>
+    </li>
+
+    <li>
+        <a asp-action="Shop" asp-controller="Options" class="card">
+            <img src="~/Images/shop.jpg" class="card__image" alt="" style="height:220px;" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <img class="card__thumb" src="/Images/logo.png" alt="" />
+                    <div class="card__header-text">
+                        <h3 class="card__title" style="font-size:20px">SHOP</h3>
+                    </div>
+                </div>
+                <p class="card__description" style="font-size:20px;margin-left:50px;color:red">Coins: @Model.Coins</p>
+            </div>
+        </a>
+    </li>
+
+    <li>
+        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("LoginPage", "Home", new { area = "" })" class="card" style="background-color:black">
+            <img src="~/Images/exit.jpg" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header" style="background-color:black">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <div class="card__header-text">
+                        <h3 class="card__title" style="color:red;font-size:26px;margin-left:80px">Logout</h3>
+                    </div>
+                </div>
+                <p class="card__description">Bye, Hero!</p>
+            </div>
+        </a>
+    </li>
+
+</ul>

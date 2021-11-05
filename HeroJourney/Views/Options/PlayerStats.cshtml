@@ -1,0 +1,27 @@
+﻿@model HeroListingModel
+
+<link href="~/css/PlayerStats.css" rel="stylesheet" />
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<a asp-action="MainMenu" asp-controller="Home"><i class='fas fa-long-arrow-alt-left' style='font-size: 45px; color: #ffcc00'></i></a>
+<a asp-action="ChangeUsername" asp-controller="Options" class="buttonChange">Change Username</a>
+<div class="field">
+    <div><img class="left" src="../Images/statsImg.png" alt="Alternate Text" /></div>    
+
+    <div class="row">
+        <p>Name: @Model.Name</p>
+        <p>Class: @Model.ClassName</p>
+        <p>Sub Class: @Model.SubClassName</p>
+        <p>--------------------------</p>
+        <p>@Model.XP XP/@Model.Level lvl</p>
+        <p>--------------------------</p>
+        <p>Health: @Model.Health</p>
+        <p>Attack: @Model.Attack</p>
+        <p>Defense: @Model.Defense</p>
+        <p>Coins: @Model.Coins</p>
+        <br />
+        <p style="color:rgb(30 10 244);font-weight:bold">Special Item: @Model.SpecialItemName</p>
+    </div>   
+
+
+</div>

@@ -1,0 +1,51 @@
+﻿body {
+    background-image: url("../Images/endpage.jpg");
+    background-size: cover;
+}
+
+.row {
+    border: 2px solid black;
+    height:500px;
+    width:500px;
+    margin-left:300px;
+    margin-top:80px;
+    background-color:gray;
+    opacity:0.8;
+}
+
+.spring-fever{
+    margin-top:-550px;
+    
+}
+
+.winresult{
+    margin-top:280px;
+    margin-left:20px;
+    text-align:center;
+}
+
+.winresult h1{
+    color:black;
+    font-weight:bolder;
+}
+
+.winresult h3{
+    font-weight:bold;
+}
+
+.winresult p{
+    margin-top:20px;
+    color:black;
+    font-weight:bolder;
+    font-size:30px;
+    
+}
+
+input{
+    margin-left:450px;
+    font-size:20px;
+    margin-top:10px;
+    background-color:darkslategrey;
+    color:white;
+    width:210px;
+}

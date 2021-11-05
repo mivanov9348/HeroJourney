@@ -1,0 +1,13 @@
+﻿body {
+    font-family: Elecstrom;
+    background-image:url("../Images/loginWallpaper.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.LoginMenu {
+    margin-left: -100px;
+    margin-top: 250px;
+    font-size: 30px;
+    text-align: center;
+}

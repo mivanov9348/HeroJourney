@@ -1,0 +1,30 @@
+﻿body {
+    font-family: 'Blackwood Castle';
+    background-image: url("../Images/smithy.jpg");
+    background-size: cover;
+   
+}
+
+table {
+    margin-top: 50px;
+    opacity: 0.9;
+    text-align: center;
+}
+
+th {
+    color: black;
+    font-size: 30px;
+    font-weight:bolder;
+}
+
+td {
+    font-size: 30px;
+}
+
+tr {
+    border: 3px solid black;
+}
+
+.table-dark1{
+    width:100%;
+}

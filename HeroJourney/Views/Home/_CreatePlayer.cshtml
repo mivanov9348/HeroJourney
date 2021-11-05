@@ -1,0 +1,53 @@
+﻿@model NewPlayerViewModel
+
+    <link href="~/css/CreatePlayer.css" rel="stylesheet" />
+
+    <p class="title">Choose your Hero!</p>
+    <div class="wrapper">
+
+        <form method="get">
+            <div class="card">
+                <img src="~/Images/paladin.jpg" />
+                <div class="info">
+                    <h1>Paladin</h1>
+                    <p></p>
+                    <input type="hidden" asp-for="@Model.ClassName" value="Paladin" />
+                    <input class="btn" type="submit" asp-action="CreatePlayer"  value="Choose" />
+                </div>
+            </div>
+        </form>
+
+        <form method="get">
+            <div class="card">
+                <img src="~/Images/wizard.jpg" />
+                <div class="info">
+                    <h1>Wizard</h1>                    
+                    <input type="hidden" asp-for="@Model.ClassName" value="Wizard" />
+                    <input class="btn" type="submit" asp-action="CreatePlayer" value="Choose" />
+                </div>
+            </div>
+        </form>
+
+        <form method="get">
+            <div class="card">
+                <img src="~/Images/druid.jpg" />
+                <div class="info">
+                    <h1>Druid</h1>                
+                    <input type="hidden" asp-for="@Model.ClassName" value="Druid" />
+                    <input class="btn" type="submit" asp-action="CreatePlayer" value="Choose" />
+                </div>
+            </div>
+        </form>
+
+        <form method="get">
+            <div class="card">
+                <img src="~/Images/viking.jpg" />
+                <div class="info">
+                    <h1>Viking</h1>                    
+                    <input type="hidden" asp-for="@Model.ClassName" value="Viking" />
+                    <input class="btn" type="submit" asp-action="CreatePlayer" value="Choose" />
+                </div>
+            </div>
+        </form>
+    </div>
+

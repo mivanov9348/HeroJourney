@@ -1,0 +1,53 @@
+﻿@model HeroListingModel
+<link href="~/css/DeadView.css" rel="stylesheet" />
+
+@{
+    var row = 0;
+}
+
+<div class="row">
+
+    <form method="get">
+        <div class="buttonRevive">
+            <input type="submit" asp-action="Revive" value="Revive" />
+            <p>Take 90% from your coins and Experience</p>
+        </div>
+    </form>
+
+    <form method="get">
+        <div class="buttonDelete">
+            <input type="submit" asp-action="Delete" value="Delete hero" />
+            <p>Delete your hero and start from zero</p>
+        </div>
+    </form>
+
+
+</div>
+
+
+<table class="table table-dark">
+    <thead>
+        <tr style="color:red">
+            <th colspan="2">
+                Killed Enemy:
+            </th>
+        </tr>
+
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Enemies)
+        {
+            row++;
+            <tr>
+                <th>@row</th>
+                <th scope="row">@item.ClassName @item.TypeName</th>
+                <td>@item.Level</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

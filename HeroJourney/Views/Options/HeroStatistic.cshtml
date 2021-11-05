@@ -1,0 +1,46 @@
+﻿@model HeroListingModel
+
+<link href="~/css/HeroStatistic.css" rel="stylesheet" />
+
+<form  method="get">
+    <input style="margin-top:50px;font-size:20px" type="submit" asp-action="MainMenu" asp-controller="Home" value="Back" />
+</form>
+<section>
+    <!--for demo wrap-->
+    <h1>Kill List</h1>
+    <h5>Monster Killed: @Model.Kills</h5>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th colspan="2" style="text-align:center">Name</th>                  
+                    <th>Level</th>
+                    <th>Attack</th>                   
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                @foreach (var item in Model.Enemies)
+                {
+                    <tr>
+                        <td>@item.ClassName</td>
+                        <td>@item.TypeName</td>
+                        <td>@item.Level</td>
+                        <td>@item.Attack</td>                  
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<script>
+    $(window).on("load resize ", function () {
+        var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+        $('.tbl-header').css({ 'padding-right': scrollWidth });
+    }).resize();
+</script>
