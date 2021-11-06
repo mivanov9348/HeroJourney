@@ -1,0 +1,17 @@
+﻿<link href="~/css/AccountPage.css" rel="stylesheet" />
+
+<div class="menuDiv">
+
+    <form method="post">
+        <div class="button">
+
+            <input class="Settings" asp-area="Identity" asp-page="/Account/Manage/Index" value="Settings" type="submit" />
+            <br />
+            <input class="LogoutBtn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("LoginPage", "Home", new { area = "" })" type="submit" name="name" value="Logout" />
+
+        </div>
+
+    </form>
+
+
+</div>

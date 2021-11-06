@@ -33,6 +33,8 @@ namespace HeroJourney.Data
 
         public DbSet<ArenaStat> ArenaStats { get; set; }
 
+        public DbSet<HeroRecords> HeroRecords { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Hero>(hero =>
@@ -163,6 +165,13 @@ namespace HeroJourney.Data
                 arenaStat.HasOne(x => x.Enemy)
                 .WithMany(x => x.ArenaStats)
                  .HasForeignKey(x => x.EnemyId);
+
+            });
+
+            builder.Entity<HeroRecords>(heroRec =>
+            {
+                heroRec.HasKey(x => x.Id);
+                
 
             });
 

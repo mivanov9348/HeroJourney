@@ -159,7 +159,8 @@
             if (hero.IsDead || currEnemy.IsDead)
             {
                 this.logicalService.CalculateAfterFight(hero, currEnemy, currArena);
-                this.heroService.checkLevel(hero.XP, hero);            
+                this.heroService.checkLevel(hero.XP, hero);
+                this.heroService.SavePlayerRecord(hero);
                 currArena.Turn = 3;
             }
 
@@ -200,7 +201,8 @@
             if (hero.IsDead || currEnemy.IsDead)
             {
                 this.logicalService.CalculateAfterFight(hero, currEnemy, currArena);
-                this.heroService.checkLevel(hero.XP, hero);              
+                this.heroService.checkLevel(hero.XP, hero);
+                this.heroService.SavePlayerRecord(hero);
                 currArena.Turn = 3;
             }
             return View("Arena", new ArenaViewModel

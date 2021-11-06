@@ -71,10 +71,16 @@
         public void Delete(Hero hero)
         {
             var enemyDefeated = this.data.EnemyRecords.Where(x => x.HeroId == hero.Id).ToList();
+            var arena = this.data.ArenaStats.Where(x => x.HeroId == hero.Id).ToList();
+            foreach (var item in arena)
+            {
+                this.data.ArenaStats.Remove(item);
+            }
             foreach (var item in enemyDefeated)
             {
                 this.data.EnemyRecords.Remove(item);
             }
+
             this.data.Heroes.Remove(hero);
             this.data.SaveChanges();
         }
@@ -145,5 +151,41 @@
             this.data.SaveChanges();
         }
 
+        public void SavePlayerRecord(Hero hero)
+        {
+            var newHero = this.data.HeroRecords.FirstOrDefault(x => x.HeroId == hero.Id);
+            var currHeroClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
+
+            if (newHero != null)
+            {
+                newHero.Attack = hero.Attack;
+                newHero.Defense = hero.Defense;
+                newHero.ClassName = hero.Class.Name;
+                newHero.SubClassName = hero.SubHeroClass.SubClassName;
+                newHero.Level = hero.Level;
+                newHero.Xp = hero.XP;
+                newHero.Kills = hero.Kills;
+                newHero.Name = hero.Name;
+                newHero.Id = hero.Id;
+            }
+            else
+            {
+                newHero = new HeroRecords
+                {
+                    Attack = hero.Attack,
+                    Defense = hero.Defense,
+                    ClassName = currHeroClass.Name,
+                    SubClassName = hero.SubHeroClass.SubClassName,
+                    Level = hero.Level,
+                    Xp = hero.XP,
+                    Kills = hero.Kills,
+                    Name = hero.Name,
+                    HeroId = hero.Id
+                };
+            };
+            this.data.HeroRecords.Add(newHero);
+            this.data.SaveChanges();
+        }
     }
 }
+

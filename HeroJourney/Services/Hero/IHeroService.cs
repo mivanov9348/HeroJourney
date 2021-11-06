@@ -32,6 +32,8 @@
 
         void Buying(int id, Hero hero);
 
+        void SavePlayerRecord(Hero hero);
+
 
     }
 }

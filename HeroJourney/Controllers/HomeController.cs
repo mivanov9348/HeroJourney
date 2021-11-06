@@ -99,6 +99,14 @@
             });
         }
 
+        public IActionResult AccountPage()
+        {
+
+
+
+            return View();
+        }
+
         public IActionResult Revive(NewPlayerViewModel npvm)
         {
             CurrentUser();
