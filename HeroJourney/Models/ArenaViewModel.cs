@@ -41,6 +41,7 @@ namespace HeroJourney.Models
 
         public int EnemyId { get; set; }
 
+        public string HeroImageUrl { get; set; }
         public int Turn { get; set; }
     }
 }

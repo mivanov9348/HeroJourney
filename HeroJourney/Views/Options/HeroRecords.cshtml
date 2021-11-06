@@ -1,22 +1,25 @@
 ﻿@model HeroListingModel
+<link href="~/css/HeroRecords.css" rel="stylesheet" />
 
-<link href="~/css/HeroStatistic.css" rel="stylesheet" />
-
-<form  method="get">
+<form method="get">
     <input style="margin-top:50px;font-size:20px" type="submit" asp-action="MainMenu" asp-controller="Home" value="Back" />
 </form>
 
 <section>
     <!--for demo wrap-->
-    <h1>Kill List</h1>
-    <h5>Monster Killed: @Model.Kills</h5>
-    <div class="tbl-header">    
+    <h1>Champions List</h1>   
+    <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
             <thead>
                 <tr>
-                    <th colspan="2" style="text-align:center">Name</th>                  
+                    <th  style="text-align:center">Name</th>
+                    <th>Class</th>
+                    <th>SubClass</th>
+                    <th>Kills</th>
                     <th>Level</th>
-                    <th>Attack</th>                   
+                    <th>Attack</th>
+                    <th>Defense</th>
+
                 </tr>
             </thead>
         </table>
@@ -24,14 +27,18 @@
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-                @foreach (var item in Model.Enemies)
+                @foreach (var item in Model.HeroRecords)
                 {
-                    <tr>
-                        <td>@item.ClassName</td>
-                        <td>@item.TypeName</td>
-                        <td>@item.Level</td>
-                        <td>@item.Attack</td>                  
-                    </tr>
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.ClassName</td>
+                    <td>@item.SubClassName</td>
+                    <td>@item.Kills</td>
+                    <td>@item.Level</td>
+                    <td>@item.Attack</td>
+                    <td>@item.Defense</td>
+
+                </tr>
                 }
             </tbody>
         </table>

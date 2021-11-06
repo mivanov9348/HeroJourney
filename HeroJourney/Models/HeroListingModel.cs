@@ -35,8 +35,9 @@ namespace HeroJourney.Models
         public int Armor { get; set; }
 
         public int Coins { get; set; }
-        
-        public ICollection<EnemyRecords> Enemies { get; set; } = new HashSet<EnemyRecords>();
+
+        public ICollection<HeroRecords> HeroRecords { get; set; } = new HashSet<HeroRecords>();
+        public virtual ICollection<EnemyRecords> Enemies { get; set; } = new HashSet<EnemyRecords>();
 
     }
 

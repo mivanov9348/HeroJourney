@@ -1,5 +1,6 @@
 ﻿namespace HeroJourney.Services.Hero
 {
+    using HeroJourney.Controllers;
     using HeroJourney.Data;
     using HeroJourney.Models;
     using System.Linq;
@@ -42,23 +43,25 @@
             this.data.SaveChanges();
         }
 
-        public Hero Create(string name, Class classType, int classId, SubHeroClass SubHeroClass, int SubHeroClassId, string UserID, int Health, int Attack, int Defense, int XP, int Coins, int Level, bool IsDead)
+        public Hero Create(NewPlayerViewModel npvm, Hero hero, string UserId)
         {
-
+            var classT = this.data.Classes.FirstOrDefault(x => x.Name == npvm.ClassName);
+            var className = classT.Name;
+            var subClass = this.data.SubHeroClasses.FirstOrDefault(x => x.ClassId == classT.Id && x.SubClassLevel == 1);
             var newHero = new Hero
             {
-                Name = name,
-                Class = classType,
-                ClassId = classId,
-                SubHeroClass = SubHeroClass,
-                SubHeroClassId = SubHeroClassId,
-                UserId = UserID,
-                Health = Health,
-                Attack = Attack,
-                Defense = Defense,
-                XP = XP,
-                Coins = Coins,
-                Level = Level,
+                Name = className,
+                Class = classT,
+                ClassId = classT.Id,
+                SubHeroClass = subClass,
+                SubHeroClassId = subClass.Id,
+                UserId = UserId,
+                Health = classT.Health,
+                Attack = classT.Attack,
+                Defense = classT.Defence,
+                XP = DataConstant.HeroStats.startingXP,
+                Coins = DataConstant.HeroStats.startingCoins,
+                Level = DataConstant.HeroStats.startingLevel,
                 IsDead = false
             };
 
@@ -166,7 +169,8 @@
                 newHero.Xp = hero.XP;
                 newHero.Kills = hero.Kills;
                 newHero.Name = hero.Name;
-                newHero.Id = hero.Id;
+                newHero.HeroId = hero.Id;
+                this.data.SaveChanges();
             }
             else
             {
@@ -182,9 +186,11 @@
                     Name = hero.Name,
                     HeroId = hero.Id
                 };
+                this.data.HeroRecords.Add(newHero);
+                this.data.SaveChanges();
             };
-            this.data.HeroRecords.Add(newHero);
-            this.data.SaveChanges();
+
+
         }
     }
 }

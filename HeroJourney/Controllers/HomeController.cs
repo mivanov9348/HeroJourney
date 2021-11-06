@@ -1,6 +1,5 @@
 ﻿namespace HeroJourney.Controllers
 {
-    using static Controllers.DataConstant.HeroStats;
     using HeroJourney.Data;
     using HeroJourney.Models;
     using HeroJourney.Services.Hero;
@@ -73,20 +72,12 @@
         public IActionResult CreatePlayer(NewPlayerViewModel vpvm)
         {
             CurrentUser();
-            var classT = this.data.Classes.FirstOrDefault(x => x.Name == vpvm.ClassName);
-            var className = classT.Name;
-            var subClass = this.data.SubHeroClasses.FirstOrDefault(x => x.ClassId == classT.Id && x.SubClassLevel == 1);
-
-            int XP = DataConstant.HeroStats.startingXP;
-            int Coins = DataConstant.HeroStats.startingCoins;
-            int Level = DataConstant.HeroStats.startingLevel;
-
-            var hero = this.heroService.Create(classT.Name, classT, classT.Id, subClass, subClass.Id, UserID, classT.Health, classT.Attack, classT.Defence, XP, Coins, Level, false);
+            var Newhero = this.heroService.Create(vpvm, hero, UserID);
 
             return View("MainMenu", new NewPlayerViewModel
             {
-                Class = classT,
-                ClassName = className
+                Class = Newhero.Class,
+                ClassName = Newhero.Class.Name
             });
         }
 
@@ -101,9 +92,6 @@
 
         public IActionResult AccountPage()
         {
-
-
-
             return View();
         }
 

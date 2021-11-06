@@ -5,7 +5,6 @@
     using HeroJourney.Services;
     using HeroJourney.Services.Hero;
     using Microsoft.AspNetCore.Mvc;
-    using System;
     using System.Linq;
     using System.Security.Claims;
     using HeroJourney.Services.Logical;
@@ -18,7 +17,6 @@
         private readonly ILogicalService logicalService;
         private string UserID;
         private Hero hero;
-        private Random rnd;
 
         public OptionsController(IEnemyService enemyService, HeroJourneyDbContext data, IHeroService heroService, ILogicalService logicalService)
         {
@@ -26,7 +24,6 @@
             this.heroService = heroService;
             this.logicalService = logicalService;
             this.data = data;
-            rnd = new Random();
         }
 
         public IActionResult PlayerStats()
@@ -125,6 +122,7 @@
             var enemy = this.enemyService.Create(false, hero);
             this.logicalService.CreateArena(enemy, hero);
             var currArena = this.logicalService.GetCurrArena(hero, enemy);
+            var currClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
             currArena.Turn = 1;
 
             return View(new ArenaViewModel
@@ -140,59 +138,19 @@
                 EnemyName = enemy.ClassName + " " + enemy.TypeName,
                 EnemyHealth = enemy.Health,
                 EnemyId = enemy.Id,
-                Turn = currArena.Turn
-            });
-        }
-
-        public IActionResult HeroAttack(ArenaViewModel avm)
-        {
-            CurrentUser();
-            var currEnemy = this.enemyService.GetArenaEnemy(avm.EnemyId);
-            var currArena = this.logicalService.GetCurrArena(hero, currEnemy);
-            currArena.Turn = avm.Turn;
-
-            this.logicalService.CalculateAttack(hero, currEnemy, currArena);
-            this.logicalService.CheckHealth(hero, currEnemy, currArena.Turn);
-
-            currArena.Turn = this.logicalService.ChangeTurn(currArena.Turn);
-
-            if (hero.IsDead || currEnemy.IsDead)
-            {
-                this.logicalService.CalculateAfterFight(hero, currEnemy, currArena);
-                this.heroService.checkLevel(hero.XP, hero);
-                this.heroService.SavePlayerRecord(hero);
-                currArena.Turn = 3;
-            }
-
-            return View("Arena", new ArenaViewModel
-            {
-                HeroAttack = hero.Attack,
-                HeroDefense = hero.Defense,
-                HeroHealth = hero.Health,
-                HeroLevel = hero.Level,
-                HeroName = hero.Name,
-                HeroCoins = hero.Coins,
-                HeroXP = hero.XP,
-                EnemyAttack = currEnemy.Attack,
-                EnemyDefense = currEnemy.Defense,
-                EnemyName = currEnemy.ClassName + " " + currEnemy.TypeName,
-                EnemyHealth = currEnemy.Health,
-                EnemyId = currEnemy.Id,
                 Turn = currArena.Turn,
-                HeroXpWin = currArena.HeroWinsXp,
-                HeroCoinsWin = currArena.HeroWinsCoins,
-                EnemyDamage = currArena.EnemyDamage,
-                HeroDamage = currArena.HeroDamage
+                HeroImageUrl = currClass.ImageUrl
             });
         }
 
-        public IActionResult EnemyAttack(ArenaViewModel avm)
+        public IActionResult Attack(ArenaViewModel avm)
         {
             CurrentUser();
             var currEnemy = this.data.EnemyRecords.FirstOrDefault(x => x.Id == avm.EnemyId);
             var currArena = this.logicalService.GetCurrArena(hero, currEnemy);
             currArena.Turn = avm.Turn;
 
+            var currClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
             this.logicalService.CalculateAttack(hero, currEnemy, currArena);
             this.logicalService.CheckHealth(hero, currEnemy, currArena.Turn);
 
@@ -223,7 +181,8 @@
                 HeroCoinsWin = currArena.HeroWinsCoins,
                 HeroXpWin = currArena.HeroWinsXp,
                 EnemyDamage = currArena.EnemyDamage,
-                HeroDamage = currArena.HeroDamage
+                HeroDamage = currArena.HeroDamage,
+                HeroImageUrl = currClass.ImageUrl
             });
 
         }
@@ -252,7 +211,15 @@
             });
 
         }
-               
+
+        public IActionResult HeroRecords()
+        {
+            return View(new HeroListingModel
+            {
+                HeroRecords = this.data.HeroRecords.OrderByDescending(x => x.Kills).ToList()
+            });
+        }
+
         private void CurrentUser()
         {
             UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;

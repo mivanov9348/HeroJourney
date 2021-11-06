@@ -24,7 +24,7 @@
     <li>
         <a asp-controller="Options" asp-action="PlayerStats" class="card" style="height:300px">
 
-            <img src="~/Images/playerstats.jpg" class="card__image" alt="" />
+            <img src="~/Images/Menu/playerstats.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">
                     <h1 class="card__title" style="font-size:20px"> PLAYER STATS</h1>
@@ -37,7 +37,7 @@
 
     <li>
         <a asp-controller="Options" asp-action="Arena" class="card" style="height:300px;">
-            <img src="~/Images/arena.jpg" class="card__image" alt="" />
+            <img src="~/Images/Menu/arena.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">
                     <h3 class="card__title" style="font-size:20px">ARENA</h3>
@@ -49,7 +49,7 @@
 
     <li>
         <a asp-controller="Options" asp-action="HeroStatistic" class="card" style="height:300px;">
-            <img src="~/Images/@imgText" class="card__image" alt="" />
+            <img src="~/Images/Heroes/@imgText" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">
                     <div class="card__header-text">
@@ -63,12 +63,12 @@
 
 
     <li>
-        <a asp-controller="Options" asp-action="StoryTale" class="card" style="height:300px">
-            <img src="~/Images/book.jpg" class="card__image" alt="" />
+        <a asp-controller="Options" asp-action="StoryTale" class="card" style="height:320px">
+            <img src="~/Images/Menu/book.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">
                     <div class="card__header-text">
-                        <h3 class="card__title" style="font-size:20px">STORY TALE</h3>
+                        <h3 class="card__title" style="font-size:20px">STORY TALE(Soon..)</h3>
                     </div>
                 </div>
                 <p class="card__description"></p>
@@ -78,7 +78,7 @@
 
     <li>
         <a asp-action="Shop" asp-controller="Options" class="card">
-            <img src="~/Images/shop.jpg" class="card__image" alt="" />
+            <img src="~/Images/Menu/shop.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header">
                     <div class="card__header-text">
@@ -91,8 +91,22 @@
     </li>
 
     <li>
+        <a asp-action="HeroRecords" asp-controller="Options" class="card" style="background-color:black">
+            <img src="~/Images/Menu/herorecords.jpg" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header" style="background-color:black">
+                    <div class="card__header-text">
+                        <h3 class="card__title"style="font-size:25px">Champions List</h3>
+                    </div>
+                </div>
+                <p class="card__description"></p>
+            </div>
+        </a>
+    </li>    
+
+    <li style="margin-left:340px;width:100%">
         <a asp-action="AccountPage" asp-controller="Home" class="card" style="background-color:black">
-            <img src="~/Images/exit.jpg" class="card__image" alt="" />
+            <img src="~/Images/Menu/exit.jpg" class="card__image" alt="" />
             <div class="card__overlay">
                 <div class="card__header" style="background-color:black">
                     <div class="card__header-text">
@@ -103,5 +117,7 @@
             </div>
         </a>
     </li>
+
+    
 
 </ul>

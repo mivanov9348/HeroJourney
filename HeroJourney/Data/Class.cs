@@ -19,8 +19,10 @@ namespace HeroJourney.Data
 
         public int Attack { get; set; }
 
-        public int Defence { get; set; }       
-     
+        public int Defence { get; set; }
+
+        public string ImageUrl { get; set; }
+
         public virtual ICollection<Hero> Heroes { get; set; } = new HashSet<Hero>();
 
         public virtual ICollection<Item> Items  { get; set; } = new HashSet<Item>();

@@ -2,17 +2,19 @@
 
 <link href="~/css/Arena.css" rel="stylesheet" />
 
+
+
 @if (Model.Turn == 2)
 {
     <div class="row">
 
-        <form id="myform" asp-action="EnemyAttack"  method="get">
+        <form id="myform" asp-action="Attack" method="get">
             <div class="blog-card spring-fever" style="margin-top: -550px; background-color: lightskyblue;">
                 <p style="color: white; font-weight: bold; margin-top: 0px; background-color: darkslategrey; ">@Model.EnemyName</p>
                 <div class="title-content">
 
                 </div>
-                <img style="margin-top:10px;margin-left:-120px" src="~/Images/enemyArena.png" />
+                <img style="margin-top:10px;margin-left:-120px" src="~/Images/Heroes/Arena/enemy.png" />
 
                 <div class="utility-info">
                     <ul class="utility-list">
@@ -33,11 +35,11 @@
             <div class="title-content">
 
             </div>
-            <img src="~/Images/arenaviking.png" />
+            <img src="~/Images/Heroes/Arena/@Model.HeroImageUrl" />
 
             <div class="card-info">
-               
-                <input asp-action="HeroAttack" class="attackBtn" type="submit" value="Attack" disabled="disabled" />
+
+                <input asp-action="Attack" class="attackBtn" type="submit" value="Attack" disabled="disabled" />
             </div>
 
             <div class="utility-info">
@@ -64,7 +66,7 @@
             <div class="title-content">
 
             </div>
-            <img style="margin-top:10px;margin-left:-120px" src="~/Images/enemyArena.png" />
+            <img style="margin-top:10px;margin-left:-120px" src="~/Images/Heroes/Arena/enemy.png" />
 
             <div class="utility-info">
                 <ul class="utility-list">
@@ -84,12 +86,12 @@
                 <div class="title-content">
 
                 </div>
-                <img src="~/Images/arenaviking.png" />
+                <img src="~/Images/Heroes/Arena/@Model.HeroImageUrl" />
 
                 <div class="card-info">
                     <input type="hidden" asp-for="@Model.Turn" value="@Model.Turn" />
                     <input type="hidden" asp-for="@Model.EnemyId" value="@Model.EnemyId" />
-                    <input asp-action="HeroAttack" class="attackBtn" type="submit" value="Attack" />
+                    <input asp-action="Attack" class="attackBtn" type="submit" value="Attack" />
                 </div>
 
                 <div class="utility-info">

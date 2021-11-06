@@ -44,7 +44,7 @@ namespace HeroJourney.Data
 
         public bool IsDead { get; set; }
 
-        public bool UseSpecialItem { get; set; }
+        public bool UseSpecialItem { get; set; }        
         public int? StoryId { get; set; }
         public Story Story { get; set; }
         public virtual ICollection<EnemyRecords> EnemyRecords { get; set; } = new HashSet<EnemyRecords>();
