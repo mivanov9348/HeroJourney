@@ -170,6 +170,7 @@
                 newHero.Kills = hero.Kills;
                 newHero.Name = hero.Name;
                 newHero.HeroId = hero.Id;
+                newHero.isDead = hero.IsDead;
                 this.data.SaveChanges();
             }
             else
@@ -184,12 +185,12 @@
                     Xp = hero.XP,
                     Kills = hero.Kills,
                     Name = hero.Name,
-                    HeroId = hero.Id
+                    HeroId = hero.Id,
+                    isDead = hero.IsDead
                 };
                 this.data.HeroRecords.Add(newHero);
                 this.data.SaveChanges();
             };
-
 
         }
 
@@ -197,7 +198,9 @@
 
         public Item GetSpecialItem(Hero hero) => this.data.Items.FirstOrDefault(x => x.IsSpecial == true && x.ClassId == hero.ClassId);
 
-        public SubHeroClass GetSubClass(Hero hero)=> this.data.SubHeroClasses.FirstOrDefault(x => x.Id == hero.SubHeroClassId);
+        public SubHeroClass GetSubClass(Hero hero) => this.data.SubHeroClasses.FirstOrDefault(x => x.Id == hero.SubHeroClassId);
+
+       
     }
 }
 

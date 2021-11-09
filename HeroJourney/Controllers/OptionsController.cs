@@ -113,10 +113,14 @@
                     Items = items
                 });
             }
-
         }
 
         public IActionResult Arena(ArenaViewModel avm)
+        {
+            return View(avm);
+        }
+
+        public IActionResult GenerateArena(ArenaViewModel avm)
         {
             CurrentUser();
             var enemy = this.enemyService.Create(false, hero);
@@ -125,7 +129,7 @@
             var currClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
             currArena.Turn = 1;
 
-            return View(new ArenaViewModel
+            var arenaModel = new ArenaViewModel
             {
                 HeroAttack = hero.Attack,
                 HeroDefense = hero.Defense,
@@ -140,7 +144,9 @@
                 EnemyId = enemy.Id,
                 Turn = currArena.Turn,
                 HeroImageUrl = currClass.ImageUrl
-            });
+            };
+
+            return View("Arena", arenaModel);
         }
 
         public IActionResult Attack(ArenaViewModel avm)
@@ -183,6 +189,8 @@
                 EnemyDamage = currArena.EnemyDamage,
                 HeroDamage = currArena.HeroDamage,
                 HeroImageUrl = currClass.ImageUrl
+
+                 
             });
 
         }

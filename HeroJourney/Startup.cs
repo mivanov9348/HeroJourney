@@ -40,6 +40,7 @@ namespace HeroJourney
             //     .AddEntityFrameworkStores<FFootballCardGameDbContext>();
 
             services.AddControllersWithViews();
+            
             services.AddRazorPages();
             services.AddMvc();
             services.AddScoped<IEnemyService, EnemyService>();
@@ -66,7 +67,7 @@ namespace HeroJourney
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();

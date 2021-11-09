@@ -25,6 +25,7 @@
         Item GetSpecialItem(Hero hero);
 
         SubHeroClass GetSubClass(Hero hero);
+       
 
     }
 }

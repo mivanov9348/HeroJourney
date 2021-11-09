@@ -5,21 +5,25 @@
     <input style="margin-top:50px;font-size:20px" type="submit" asp-action="MainMenu" asp-controller="Home" value="Back" />
 </form>
 
+@{
+    var IsDead = "No";
+}
+
 <section>
     <!--for demo wrap-->
-    <h1>Champions List</h1>   
+    <h1>Champions List</h1>
     <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
             <thead>
                 <tr>
-                    <th  style="text-align:center">Name</th>
+                    <th style="text-align:center">Name</th>
                     <th>Class</th>
                     <th>SubClass</th>
                     <th>Kills</th>
                     <th>Level</th>
                     <th>Attack</th>
                     <th>Defense</th>
-
+                    <th>Dead</th>
                 </tr>
             </thead>
         </table>
@@ -29,16 +33,25 @@
             <tbody>
                 @foreach (var item in Model.HeroRecords)
                 {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.ClassName</td>
-                    <td>@item.SubClassName</td>
-                    <td>@item.Kills</td>
-                    <td>@item.Level</td>
-                    <td>@item.Attack</td>
-                    <td>@item.Defense</td>
 
-                </tr>
+                    @if (item.isDead == false)
+                    {
+                        IsDead = "No";
+                    }
+                    else
+                    {
+                        IsDead = "Yes";
+                    }
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.ClassName</td>
+                        <td>@item.SubClassName</td>
+                        <td>@item.Kills</td>
+                        <td>@item.Level</td>
+                        <td>@item.Attack</td>
+                        <td>@item.Defense</td>
+                        <td>@IsDead</td>
+                    </tr>
                 }
             </tbody>
         </table>

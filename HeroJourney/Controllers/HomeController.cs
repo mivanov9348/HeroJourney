@@ -32,7 +32,7 @@
 
             if (User.Identity.Name == null)
             {
-                return View();
+                return RedirectToAction();
             }
 
             CurrentUser();
@@ -52,6 +52,7 @@
             {
                 CurrentUser();
                 var classType = heroService.GetClass(hero);
+
                 return View(new NewPlayerViewModel
                 {
                     Name = hero.Name,

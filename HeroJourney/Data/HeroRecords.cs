@@ -27,5 +27,7 @@ namespace HeroJourney.Data
         public int Level { get; set; }
 
         public int Kills { get; set; }
+
+        public bool isDead{ get; set; }
     }
 }
