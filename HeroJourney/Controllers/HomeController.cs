@@ -51,7 +51,7 @@
             else
             {
                 CurrentUser();
-                var classType = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
+                var classType = heroService.GetClass(hero);
                 return View(new NewPlayerViewModel
                 {
                     Name = hero.Name,

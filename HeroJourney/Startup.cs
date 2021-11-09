@@ -46,6 +46,7 @@ namespace HeroJourney
             services.AddScoped<IHeroService, HeroService>();
             services.AddScoped<ILogicalService, LogicalService>();
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +56,7 @@ namespace HeroJourney
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+
             }
             else
             {
@@ -77,6 +79,15 @@ namespace HeroJourney
                     pattern: "{controller=Home}/{action=LoginPage}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            var serviceFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var servScope = serviceFactory.CreateScope())
+            {
+                var dbContext = servScope.ServiceProvider.GetService<HeroJourneyDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
+
+
         }
     }
 }

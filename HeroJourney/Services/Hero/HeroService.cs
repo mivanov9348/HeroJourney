@@ -192,6 +192,12 @@
 
 
         }
+
+        public Class GetClass(Hero hero) => this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
+
+        public Item GetSpecialItem(Hero hero) => this.data.Items.FirstOrDefault(x => x.IsSpecial == true && x.ClassId == hero.ClassId);
+
+        public SubHeroClass GetSubClass(Hero hero)=> this.data.SubHeroClasses.FirstOrDefault(x => x.Id == hero.SubHeroClassId);
     }
 }
 

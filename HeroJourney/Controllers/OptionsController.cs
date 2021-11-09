@@ -29,9 +29,9 @@
         public IActionResult PlayerStats()
         {
             CurrentUser();
-            var heroClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
-            var specialItemName = this.data.Items.FirstOrDefault(x => x.IsSpecial == true && x.ClassId == hero.ClassId).Name;
-            var subClassName = this.data.SubHeroClasses.FirstOrDefault(x => x.Id == hero.SubHeroClassId).SubClassName;
+            var heroClass = heroService.GetClass(hero);
+            var specialItemName = heroService.GetSpecialItem(hero).Name;
+            var subClassName = heroService.GetSubClass(hero).SubClassName;
 
             return View(new HeroListingModel
             {
@@ -150,7 +150,7 @@
             var currArena = this.logicalService.GetCurrArena(hero, currEnemy);
             currArena.Turn = avm.Turn;
 
-            var currClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
+            var currClass = heroService.GetClass(hero);
             this.logicalService.CalculateAttack(hero, currEnemy, currArena);
             this.logicalService.CheckHealth(hero, currEnemy, currArena.Turn);
 
@@ -191,7 +191,7 @@
         {
             CurrentUser();
             var killedMonster = this.data.EnemyRecords.Where(x => x.HeroId == hero.Id && x.IsDead == true).ToList();
-            var currClass = this.data.Classes.FirstOrDefault(x => x.Id == hero.ClassId);
+            var currClass = heroService.GetClass(hero);
 
             return View(new HeroListingModel
             {
