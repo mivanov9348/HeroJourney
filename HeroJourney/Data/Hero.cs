@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HeroJourney.Data
 {
@@ -36,8 +33,7 @@ namespace HeroJourney.Data
         public int SubHeroClassId { get; set; }
 
         public SubHeroClass SubHeroClass { get; set; }
-
-        [Required]
+        
         public IdentityUser User { get; set; }
 
         public string UserId { get; set; }
@@ -45,8 +41,7 @@ namespace HeroJourney.Data
         public bool IsDead { get; set; }
 
         public bool UseSpecialItem { get; set; }        
-        public int? StoryId { get; set; }
-        public Story Story { get; set; }
+     
         public virtual ICollection<EnemyRecords> EnemyRecords { get; set; } = new HashSet<EnemyRecords>();
 
         public virtual ICollection<ArenaStat> ArenaStats { get; set; } = new HashSet<ArenaStat>();

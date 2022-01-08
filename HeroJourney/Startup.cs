@@ -40,13 +40,13 @@ namespace HeroJourney
             //     .AddEntityFrameworkStores<FFootballCardGameDbContext>();
 
             services.AddControllersWithViews();
-            
+
             services.AddRazorPages();
             services.AddMvc();
             services.AddScoped<IEnemyService, EnemyService>();
             services.AddScoped<IHeroService, HeroService>();
             services.AddScoped<ILogicalService, LogicalService>();
-
+            
 
         }
 
@@ -67,7 +67,7 @@ namespace HeroJourney
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -78,7 +78,7 @@ namespace HeroJourney
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=LoginPage}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapRazorPages();              
             });
 
             var serviceFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();

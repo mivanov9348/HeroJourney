@@ -29,8 +29,6 @@ namespace HeroJourney.Data
 
         public DbSet<Level> Levels { get; set; }
 
-        public DbSet<Story> Stories { get; set; }
-
         public DbSet<ArenaStat> ArenaStats { get; set; }
 
         public DbSet<HeroRecords> HeroRecords { get; set; }
@@ -47,7 +45,8 @@ namespace HeroJourney.Data
 
                 hero.HasOne<IdentityUser>()
                      .WithOne()
-                     .HasForeignKey<Hero>(x => x.UserId);
+                     .HasForeignKey<Hero>(x => x.UserId)
+                     .OnDelete(DeleteBehavior.NoAction);
 
                 hero.HasMany(x => x.EnemyRecords)
                     .WithOne(x => x.Hero)
@@ -55,11 +54,7 @@ namespace HeroJourney.Data
 
                 hero.HasOne(x => x.SubHeroClass)
                    .WithMany(x => x.Heroes)
-                   .HasForeignKey(x => x.SubHeroClassId);
-
-                hero.HasOne(x => x.Story)
-                    .WithMany(x => x.Heroes)
-                    .HasForeignKey(x => x.StoryId);
+                   .HasForeignKey(x => x.SubHeroClassId);               
 
                 hero.HasMany(x => x.ArenaStats)
                   .WithOne(x => x.Hero)
@@ -116,17 +111,7 @@ namespace HeroJourney.Data
             {
                 enclass.HasKey(x => x.Id);
 
-            });
-
-            builder.Entity<Story>(story =>
-            {
-                story.HasKey(x => x.Id);
-
-                story.HasMany(x => x.Heroes)
-                     .WithOne(x => x.Story)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-            });
+            });           
 
             builder.Entity<EnemyType>(entype =>
             {
@@ -174,6 +159,8 @@ namespace HeroJourney.Data
                 
 
             });
+
+           
 
             base.OnModelCreating(builder);
         }

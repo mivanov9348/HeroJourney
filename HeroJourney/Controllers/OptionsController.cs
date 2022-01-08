@@ -25,7 +25,6 @@
             this.logicalService = logicalService;
             this.data = data;
         }
-
         public IActionResult PlayerStats()
         {
             CurrentUser();
@@ -48,9 +47,7 @@
                 SpecialItemName = specialItemName,
                 SubClassName = subClassName
             });
-
         }
-
         public IActionResult ChangeUsername(HeroListingModel hlm)
         {
             CurrentUser();
@@ -68,7 +65,6 @@
                 return RedirectToAction("MainMenu", "Home");
             }
         }
-
         public IActionResult Shop(ShopViewModel slv)
         {
             CurrentUser();
@@ -114,12 +110,10 @@
                 });
             }
         }
-
         public IActionResult Arena(ArenaViewModel avm)
         {
             return View(avm);
         }
-
         public IActionResult GenerateArena(ArenaViewModel avm)
         {
             CurrentUser();
@@ -209,16 +203,7 @@
                 Kills = hero.Kills
             });
 
-        }
-
-        public IActionResult StoryTale()
-        {
-            return View(new StoriesViewModel
-            {
-                Stories = this.data.Stories.ToList()
-            });
-
-        }
+        }       
 
         public IActionResult HeroRecords()
         {

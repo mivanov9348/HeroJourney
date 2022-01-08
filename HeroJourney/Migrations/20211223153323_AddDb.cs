@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace HeroJourney.Migrations
 {
     public partial class AddDb : Migration
@@ -320,7 +322,7 @@ namespace HeroJourney.Migrations
                     ClassId = table.Column<int>(type: "int", nullable: false),
                     SubHeroClassId = table.Column<int>(type: "int", nullable: false),
                     UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     IsDead = table.Column<bool>(type: "bit", nullable: false),
                     UseSpecialItem = table.Column<bool>(type: "bit", nullable: false),
                     StoryId = table.Column<int>(type: "int", nullable: true)
@@ -332,14 +334,12 @@ namespace HeroJourney.Migrations
                         name: "FK_Heroes_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Heroes_AspNetUsers_UserId1",
                         column: x => x.UserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Heroes_Classes_ClassId",
                         column: x => x.ClassId,
@@ -490,7 +490,8 @@ namespace HeroJourney.Migrations
                 name: "IX_Heroes_UserId",
                 table: "Heroes",
                 column: "UserId",
-                unique: true);
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Heroes_UserId1",

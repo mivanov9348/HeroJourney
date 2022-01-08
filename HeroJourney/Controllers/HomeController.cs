@@ -109,6 +109,7 @@
             this.heroService.Delete(hero);
             return RedirectToAction("MainMenu", "Home");
         }
+              
 
         private void CurrentUser()
         {
